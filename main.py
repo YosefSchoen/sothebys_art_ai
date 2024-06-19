@@ -5,8 +5,8 @@ import boto3
 s3 = boto3.client('s3')
 bucket_name = 'scraped-data-raw'
 
-for i in range():
-    for j in range(5, 15):
+for i in range(1, 450):
+    for j in range(15):
         try:
             data = scraper.main(i, j)
             data = json.dumps(data)
