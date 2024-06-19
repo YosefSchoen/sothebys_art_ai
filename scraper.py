@@ -23,7 +23,7 @@ with open('Config/config.json') as file:
 def set_up_chromedriver():
     service = Service(ChromeDriverManager(driver_version='126.0.6478.61').install())
     options = Options()
-    #options.add_argument('--headless')
+    options.add_argument('--headless')
     options.add_argument('window-size=1920x1080')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
