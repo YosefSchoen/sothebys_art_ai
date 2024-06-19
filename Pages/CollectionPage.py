@@ -34,19 +34,18 @@ class CollectionPage(object):
 
     @staticmethod
     def print(collection):
-        print('page id:', collection[0])
-        print('collection id:', collection[1])
-        print('category:', collection[2])
-        print('title', collection[3])
-        print('details', collection[4])
-        print('price', collection[5])
-        print('link', collection[6])
+        print('page id:', collection['page_id'])
+        print('collection id:', collection['collection_id'])
+        print('category:', collection['category'])
+        print('title', collection['title'])
+        print('details', collection['details'])
+        print('price', collection['price'])
+        print('link', collection['link'])
 
-        for item in collection[7]:
-            print('\tpage id:', item[0])
-            print('\tcollection_id:', item[1])
-            print('\tauthor:', item[2])
-            print('\ttitle', item[3])
-            print('\testimated_price', item[4])
-            print('\tprice_sold', item[5])
-
+        for item in collection['items']:
+            print('\tpage id:', item['page_id'])
+            print('\tcollection_id:', item['collection_id'])
+            print('\tauthor:', item['author'])
+            print('\ttitle', item['title'])
+            print('\testimated_price', item['estimated_price'])
+            print('\tprice_sold', item['price_sold'])

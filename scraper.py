@@ -69,6 +69,7 @@ def main(page_id, collection_id):
     )
 
     results = results_page.get_page_results()
+    driver.quit()
     return results
 
 
