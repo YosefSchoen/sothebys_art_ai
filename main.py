@@ -18,7 +18,7 @@ for i in range(50, 51):
 
         except:
             print(f'failed on page: {i} collection: {j}')
-            data = json.dumps({'page': i, 'collection': j})
+            data = f'page: {i}, collection: {j}'
             object_key = 'fail.txt'
             s3.put_object(Bucket=bucket_name, Key=object_key, Body=data)
 
