@@ -38,7 +38,8 @@ class ItemsPage(object):
     def get_item_format_2(self, item_info):
         author = Util.get_text(item_info, 'h5', self.config_data['ITEM_DETAILS_FORMAT_2']['AUTHOR'])
         title = Util.get_text(item_info, 'p', self.config_data['ITEM_DETAILS_FORMAT_2']['TITLE'])
-
+        if author == 'n/a' and title == 'n/a':
+            title = Util.get_text(item_info, 'h5', self.config_data['ITEM_DETAILS_FORMAT_2']['AUTHOR_TILE'])
         estimated_price = self.get_price_estimate(item_info)
         price_sold = self.get_price_sold(item_info)
         item = {
