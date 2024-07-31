@@ -32,7 +32,16 @@ class ItemsPage(object):
 
         estimated_price = self.get_price_estimate(item_info)
         price_sold = self.get_price_sold(item_info)
-        item = [self.page_id, self.collection_id, author, title, estimated_price, price_sold]
+
+        item = {
+            'page_id': self.page_id,
+            'collection_id': self.collection_id,
+            'author': author,
+            'title': title,
+            'estimated_price': estimated_price,
+            'price_sold': price_sold
+        }
+
         return item
 
     def get_item_format_2(self, item_info):
@@ -89,6 +98,3 @@ class ItemsPage(object):
         items = self.get_items_on_page()
         items += self.get_items_on_multiple_pages()
         return items
-
-
-

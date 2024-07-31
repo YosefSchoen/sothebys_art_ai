@@ -41,7 +41,7 @@ class CollectionPage(object):
         print('details', collection['details'])
         print('price', collection['price'])
         print('link', collection['link'])
-
+        print('items:')
         for item in collection['items']:
             print('\tpage id:', item['page_id'])
             print('\tcollection_id:', item['collection_id'])
