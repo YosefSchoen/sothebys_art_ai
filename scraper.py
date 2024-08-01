@@ -50,7 +50,7 @@ def make_selenium_work(driver):
         "userAgent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.53 Safari/537.36'})
 
 
-def main(page_id, collection_id):
+def main(page_id):
     driver = set_up_chromedriver()
     make_selenium_work(driver=driver)
     home_page = HomePage(driver=driver, config_data=config_data)
@@ -64,8 +64,7 @@ def main(page_id, collection_id):
         driver=driver,
         config_data=config_data,
         page_id=page_id,
-        page_url=config_data['LINKS']['RESULTS_LINK']+'&p='+str(page_id),
-        collection_id=collection_id
+        page_url=config_data['LINKS']['RESULTS_LINK']+'&p='+str(page_id)
     )
 
     results = results_page.get_page_results()
@@ -74,4 +73,4 @@ def main(page_id, collection_id):
 
 
 if __name__ == '__main__':
-    main(0, 0)
+    main(0)
