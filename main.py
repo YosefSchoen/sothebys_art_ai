@@ -20,7 +20,7 @@ try:
 except Exception as e:
     print(e)
     print(f'failed on page: {page_num:03d}')
-    data = 'failed to scrape'
+    data = f'{e}'
     object_key = f'failed/{page_num:03d}.text'
     s3.put_object(Bucket=bucket_name, Key=object_key, Body=data)
 
