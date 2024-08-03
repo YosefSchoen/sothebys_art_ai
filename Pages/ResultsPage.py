@@ -1,17 +1,20 @@
-import Util
-from bs4 import BeautifulSoup
-from Pages.CollectionPage import CollectionPage
 import time
+from typing import List
+from bs4 import BeautifulSoup
+from selenium import webdriver
+
+from Pages.CollectionPage import CollectionPage
+from entities import Collection
 
 
 class ResultsPage(object):
-    def __init__(self, driver, config_data, page_id, page_url):
+    def __init__(self, driver: webdriver, config_data: dict, page_id: int, page_url: str) -> None:
         self.driver = driver
         self.config_data = config_data
         self.page_id = page_id
         self.page_url = page_url
 
-    def get_page_results(self):
+    def get_page_results(self) -> List[Collection]:
         self.driver.get(self.page_url)
         time.sleep(self.config_data['WAIT_TIME_SMALL'])
         html = self.driver.page_source

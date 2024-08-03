@@ -3,11 +3,39 @@
   "WAIT_TIME_LARGE": 20,
   "WAIT_TIME_SMALL": 5,
 
+  "AWS": {
+    "BUCKET": "scraped-data-raw"
+  },
+
+  "WEB_DRIVER": {
+    "CHROME_VERSION": "126.0.6478.61",
+    "OPTIONS": [
+      "--headless",
+      "window-size=1920x1080",
+      "--no-sandbox",
+      "--disable-dev-shm-usage",
+      "start-maximized"
+    ],
+    "EXPERIMENTAL": [
+      {
+        "NAME": "excludeSwitches",
+        "VALUE": ["enable-automation"]
+      },
+      {
+        "NAME": "useAutomationExtension",
+        "VALUE": false
+      }
+
+    ]
+  },
+
   "LINKS": {
     "START_LINK": "https://www.sothebys.com/en/",
     "AUCTION_LINK": "https://www.sothebys.com/en/buy/auction/",
     "RESULTS_LINK": "https://www.sothebys.com/en/results?locale=en"
   },
+
+  "POPUP_X_PATH": "//*[@id=\"onetrust-accept-btn-handler\"]",
 
   "LOGIN_X_PATHS": {
     "LOG_IN_START_BUTTON": "//div[@class='LinkedText']//a[text()='Log In']",
@@ -42,22 +70,5 @@
   "ITEM_DETAILS": {
     "ESTIMATE_PRICE": "paragraph-module_paragraph14Regular__Zfr98 css-1ud9h99",
     "PRICE_SOLD": "label-module_label14Medium__uD9e- css-1fbegxe"
-  },
-
-  "Artist_Scraper_Data": {
-    "Starting_Link" : "https://www.sothebys.com/en/search?locale=en&query=artists&tab=artistsmakers",
-    "page_info": "_1NKmJc-dm-eCxS4OCrXrR5",
-    "item_info_artists": "_3NZctpq_uZ_mC8NSFPQqk_",
-    "Artist": "Artist",
-    "artist_info" : "_3Dm_PuL3C5IuyJed8hRgRn",
-    "Artist_Link": "_3AU1X3oKP8TOvGyzhJI6eh oK8AyI4p9HdIRc7HuYLz6",
-    "Artist_Name": "ArtistPage-pageHeading",
-    "Artist_Life": "ArtistPage-artistInfo",
-    "Artist_Bio": "ArtistPage-bioText"
-  },
-
-  "Places_Scraper_Data" : {
-
   }
-
 }

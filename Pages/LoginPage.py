@@ -1,8 +1,9 @@
+from selenium import webdriver
 import Util
 
 
 class LoginPage(object):
-    def __init__(self, driver, config_data) -> None:
+    def __init__(self, driver: webdriver, config_data: dict) -> None:
         self.driver = driver
         self.config_data = config_data
 

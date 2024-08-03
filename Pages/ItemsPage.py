@@ -1,7 +1,9 @@
-import Util
 from bs4 import BeautifulSoup
-import time
 from selenium.webdriver.common.by import By
+import time
+from typing import List
+import Util
+from entities import Item
 
 
 class ItemsPage(object):
@@ -12,17 +14,17 @@ class ItemsPage(object):
         self.collection_id = collection_id
         self.link = link
 
-    def get_price_estimate(self, data):
+    def get_price_estimate(self, data: BeautifulSoup) -> str:
         estimate_div = self.config_data['ITEM_DETAILS']['ESTIMATE_PRICE']
         estimate = data.findAll('p', class_=estimate_div)[1].text
         return estimate
 
-    def get_price_sold(self, data):
+    def get_price_sold(self, data: BeautifulSoup) -> str:
         price_div = self.config_data['ITEM_DETAILS']['PRICE_SOLD']
         price_sold = Util.get_text(data, 'p', price_div)
         return price_sold
 
-    def get_item_format_1(self, item_info):
+    def get_item_format_1(self, item_info) -> Item:
         if Util.get_text(item_info, 'p', self.config_data['ITEM_DETAILS_FORMAT_1']['AUTHOR']) == 'n/a':
             author = 'n/a'
             title = Util.get_text(item_info, 'p', self.config_data['ITEM_DETAILS_FORMAT_1']['TITLE_1'])
@@ -33,35 +35,36 @@ class ItemsPage(object):
         estimated_price = self.get_price_estimate(item_info)
         price_sold = self.get_price_sold(item_info)
 
-        item = {
-            'page_id': self.page_id,
-            'collection_id': self.collection_id,
-            'author': author,
-            'title': title,
-            'estimated_price': estimated_price,
-            'price_sold': price_sold
-        }
+        item = Item(
+            page_id=self.page_id,
+            collection_id=self.collection_id,
+            author=author,
+            title=title,
+            estimated_price=estimated_price,
+            price_sold=price_sold
+        )
 
         return item
 
-    def get_item_format_2(self, item_info):
+    def get_item_format_2(self, item_info) -> Item:
         author = Util.get_text(item_info, 'h5', self.config_data['ITEM_DETAILS_FORMAT_2']['AUTHOR'])
         title = Util.get_text(item_info, 'p', self.config_data['ITEM_DETAILS_FORMAT_2']['TITLE'])
         if author == 'n/a' and title == 'n/a':
             title = Util.get_text(item_info, 'h5', self.config_data['ITEM_DETAILS_FORMAT_2']['AUTHOR_TILE'])
         estimated_price = self.get_price_estimate(item_info)
         price_sold = self.get_price_sold(item_info)
-        item = {
-            'page_id': self.page_id,
-            'collection_id': self.collection_id,
-            'author': author,
-            'title': title,
-            'estimated_price': estimated_price,
-            'price_sold': price_sold
-        }
+
+        item = Item(
+            page_id=self.page_id,
+            collection_id=self.collection_id,
+            author=author,
+            title=title,
+            estimated_price=estimated_price,
+            price_sold=price_sold
+        )
         return item
 
-    def get_items_on_page(self):
+    def get_items_on_page(self) -> List[Item]:
         html = self.driver.page_source
         soup = BeautifulSoup(html, parser='html.parser', features="lxml")
         item_list_div = self.config_data['ITEM_DETAILS_FORMAT_1']['ITEM_LIST']
@@ -79,7 +82,7 @@ class ItemsPage(object):
             items = list(map(lambda d: self.get_item_format_2(d), data))
             return items
 
-    def get_items_on_multiple_pages(self):
+    def get_items_on_multiple_pages(self) -> List[Item]:
         items = []
         elements = self.driver.find_elements(By.CLASS_NAME, "index-module_item__RFluh")
         if elements:
@@ -92,7 +95,7 @@ class ItemsPage(object):
                           .find_element(By.TAG_NAME, "button"))
         return items
 
-    def get_collection_items(self):
+    def get_collection_items(self) -> List[Item]:
         self.driver.get(self.link)
         time.sleep(10)
         items = self.get_items_on_page()

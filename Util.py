@@ -11,7 +11,7 @@ with open('Config/config.json') as file:
     config_data = json.load(file)
 
 
-def get_text(_data, tag, class_name):
+def get_text(_data, tag, class_name) -> str:
     detail = _data.find(tag, class_=class_name)
     try:
         detail = detail.text.replace('\n', '')
@@ -20,7 +20,7 @@ def get_text(_data, tag, class_name):
     return detail
 
 
-def click_item(driver, wait_time: int, x_path: str):
+def click_item(driver, wait_time: int, x_path: str) -> None:
     (WebDriverWait(driver, wait_time)
      .until(ec.presence_of_element_located((By.XPATH, x_path)))
      .click())
@@ -28,7 +28,7 @@ def click_item(driver, wait_time: int, x_path: str):
     time.sleep(wait_time)
 
 
-def send_data(driver, wait_time: int, x_path: str, data: str):
+def send_data(driver, wait_time: int, x_path: str, data: str) -> None:
     (WebDriverWait(driver, wait_time)
      .until(ec.element_to_be_clickable((By.XPATH, x_path)))
      .send_keys(data))
@@ -36,7 +36,7 @@ def send_data(driver, wait_time: int, x_path: str, data: str):
     time.sleep(wait_time)
 
 
-def perform_action_chain(driver, wait_time: int, x_path: str):
+def perform_action_chain(driver, wait_time: int, x_path: str) -> None:
     element = (WebDriverWait(driver, wait_time)
                .until(ec.element_to_be_clickable((By.XPATH, x_path))))
 

@@ -1,5 +1,2 @@
-### Example user template template
-### Example user template
-
-# IntelliJ project files
-run_ec2_instances.py
+ec2_scrapers.py
+Web-Scraper-Key.pem

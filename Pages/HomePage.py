@@ -1,8 +1,9 @@
+from selenium import webdriver
 import Util
 
 
 class HomePage(object):
-    def __init__(self, driver, config_data) -> None:
+    def __init__(self, driver: webdriver, config_data: dict) -> None:
         self.driver = driver
         self.config_data = config_data
 
@@ -12,7 +13,7 @@ class HomePage(object):
         Util.click_item(
             driver=self.driver,
             wait_time=self.config_data['WAIT_TIME_SMALL'],
-            x_path='//*[@id="onetrust-accept-btn-handler"]'
+            x_path=self.config_data['POPUP_X_PATH']
         )
 
     def go_to_login_page(self) -> None:
